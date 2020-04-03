@@ -12,8 +12,8 @@ class PalindromeController {
 
       const palindromes = []
 
-      minNumber = req.body.minNumber
-      maxNumber = req.body.maxNumber
+      minNumber = Number(req.body.minNumber)
+      maxNumber = Number(req.body.maxNumber)
 
       _validationContract.isRequired(minNumber, 'Informe o menor número do intervalo de números')
       _validationContract.isRequired(maxNumber, 'Informe o maior número do intervalo de números')
@@ -37,7 +37,7 @@ class PalindromeController {
           auxNum = Math.trunc(auxNum / 10)
         }
 
-        if (revNumber === num) {
+        if (revNumber == num) {
           palindromes.push(num)
         }
       }

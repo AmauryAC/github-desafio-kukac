@@ -14,13 +14,13 @@ class CashierController {
       let availableCashNotes = [1, 10, 100]
       let amountByNotes = []
 
-      purchPrice = req.body.purchPrice
-      amountPaid = req.body.amountPaid
+      purchPrice = Number(req.body.purchPrice)
+      amountPaid = Number(req.body.amountPaid)
 
       _validationContract.isRequired(purchPrice, 'Informe o valor da compra')
       _validationContract.isRequired(amountPaid, 'Informe o valor pago')
       _validationContract.isTrue((purchPrice <= 0) || (amountPaid <= 0), 'Informe valores maiores que 0')
-      _validationContract.isTrue(amountPaid > purchPrice, 'O valor pago deve ser maior ou igual ao valor da compra')
+      _validationContract.isTrue(amountPaid < purchPrice, 'O valor pago deve ser maior ou igual ao valor da compra')
 
       if (!_validationContract.isValid()) {
         res.status(400).send({
